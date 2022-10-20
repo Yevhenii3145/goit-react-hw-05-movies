@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useParams, Outlet, useNavigate, useLocation, Link } from 'react-router-dom';
 import { getMovieById } from '../../shared/api/gettingData'
 import Loader from '../../shared/Loader/Loader'
@@ -78,7 +78,10 @@ export default function MovieDetails() {
 
                 </>)}
             </div>
-            <Outlet />
+            <Suspense fallback={<div>Loading...</div>} >
+                <Outlet />
+            </Suspense>
+
         </>
     )
 }
